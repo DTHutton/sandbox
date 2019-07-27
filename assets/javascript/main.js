@@ -1,31 +1,21 @@
 function domReady() {
     document.body.className += ' javascript';
     // code goes here
-    document.addEventListener("click", function (event) {
-        if (!event.target.matches("#button")) return;
-        event.preventDefault();
-        console.log(event.target);
 
-        let image = new Image();
-        image.src = "assets/images/transport.jpg";
-        let canvas = document.getElementById("myCanvas");
-        let context = canvas.getContext("2d");
-        let row, imageWidth, imageHeight;
-
-        image.onload = function () {
-            imageWidth = image.width;
-            imageHeight = image.height;
-            row = imageHeight;
-            requestAnimationFrame(animate);
+    if (annyang) {
+        // Let's define our first command. First the text we expect, and then the function it should call
+        var commands = {
+          'test': function() {
+            console.log("character chosen");
+          }
         };
-
-        function animate() {
-            context.drawImage(image, 1, row, imageWidth, 1, 0, 0, imageWidth, row);
-            if (row > 0) row--;
-            requestAnimationFrame(animate);
-        }
-        
-    });
+      
+        // Add our commands to annyang
+        annyang.addCommands(commands);
+      
+        // Start listening. You can call this here, or attach this call to an event, button, etc.
+        annyang.start();
+      }
 
 
 
