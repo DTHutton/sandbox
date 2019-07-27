@@ -1,26 +1,38 @@
 function domReady() {
     document.body.className += ' javascript';
     // code goes here
-    let image = new Image();
-    image.src = "assets/images/transport.jpg";
-    let canvas = document.getElementById("myCanvas");
-    let context = canvas.getContext("2d");
-    let row, imageWidth, imageHeight;
+    document.addEventListener("click", function (event) {
+        if (!event.target.matches("#button")) return;
+        event.preventDefault();
+        console.log(event.target);
 
-    image.onload = function () {
-        imageWidth = image.width;
-        imageHeight = image.height;
-        row = imageHeight;
-        requestAnimationFrame(animate);
-    };
+        let image = new Image();
+        image.src = "assets/images/transport.jpg";
+        let canvas = document.getElementById("myCanvas");
+        let context = canvas.getContext("2d");
+        let row, imageWidth, imageHeight;
 
-    function animate() {
-        context.drawImage(image, 0, row, imageWidth, 1, 0, 0, imageWidth, row);
-        if (row > 0) row--;
-        else
+        image.onload = function () {
+            imageWidth = image.width;
+            imageHeight = image.height;
             row = imageHeight;
-        requestAnimationFrame(animate);
-    }
+            requestAnimationFrame(animate);
+        };
+
+        function animate() {
+            context.drawImage(image, 1, row, imageWidth, 1, 0, 0, imageWidth, row);
+            if (row > 0) row--;
+            requestAnimationFrame(animate);
+        }
+        
+    });
+
+
+
+
+
+
+
 }
 // Mozilla, Opera, Webkit
 if (document.addEventListener) {
