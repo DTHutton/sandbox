@@ -5,7 +5,7 @@ function domReady() {
     if (annyang) {
         // Let's define our first command. First the text we expect, and then the function it should call
         var commands = {
-          'test': function() {
+          "hello": function() {
             console.log("character chosen");
           }
         };
